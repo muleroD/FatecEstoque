@@ -24,7 +24,7 @@ public class ConnectionManager {
 
     public ConnectionManager() {
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            Class.forName(DRIVERNAME);
         } catch (ClassNotFoundException e) {
             System.out.println("ClassNotFoundException");
             System.out.println(e.toString());

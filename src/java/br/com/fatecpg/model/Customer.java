@@ -31,6 +31,8 @@ public class Customer {
     }
 
     public static Customer getCustomerById(int id) throws Exception {
+        Class.forName("org.apache.derby.jdbc.ClientDriver");
+
         String sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID=" + id;
         con = ConnectionManager.createConnection();
         stmt = con.createStatement();
@@ -54,6 +56,8 @@ public class Customer {
     }
 
     public static ArrayList<Customer> getCustomers() throws Exception {
+        Class.forName("org.apache.derby.jdbc.ClientDriver");
+
         String sql = "SELECT * FROM CUSTOMER ORDER BY CUSTOMER_ID";
         con = ConnectionManager.createConnection();
         stmt = con.createStatement();
