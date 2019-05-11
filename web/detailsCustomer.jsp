@@ -18,9 +18,9 @@
         <% try {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Customer c = Customer.getCustomerById(id);
-                if (c != null) { %>
-        <h3>Id: </h3>
-        <h3>Name: </h3>
+                if (c != null) {%>
+        <h3>Id: <%=c.getId()%></h3>
+        <h3>Name: <%=c.getName()%></h3>
         <hr/>
         <% } else {%>
         <h3 style="color: red"> Customer (<%=id%>) not found</h3>

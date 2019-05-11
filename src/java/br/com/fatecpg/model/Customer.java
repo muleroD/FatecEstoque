@@ -6,6 +6,7 @@
 package br.com.fatecpg.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Customer {
 
     private static Connection con = null;
     private static Statement stmt = null;
+    private static PreparedStatement preStmt = null;
     private static ResultSet rs = null;
 
     private int id;
@@ -32,11 +34,13 @@ public class Customer {
 
     public static Customer getCustomerById(int id) throws Exception {
         Class.forName("org.apache.derby.jdbc.ClientDriver");
+        String sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID = ? ";
 
-        String sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID=" + id;
         con = ConnectionManager.createConnection();
-        stmt = con.createStatement();
-        rs = stmt.executeQuery(sql);
+        preStmt = con.prepareStatement(sql);
+        preStmt.setInt(1, id);
+
+        rs = preStmt.executeQuery();
 
         Customer customer = null;
 
