@@ -4,6 +4,7 @@
     Author     : Mulero
 --%>
 
+<%@page import="br.com.fatecpg.model.PurchaseOrder"%>
 <%@page import="br.com.fatecpg.model.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,23 +20,36 @@
                 int id = Integer.parseInt(request.getParameter("id"));
                 Customer c = Customer.getCustomerById(id);
                 if (c != null) {%>
+
         <h3>Id: <%=c.getId()%></h3>
         <h3>Name: <%=c.getName()%></h3>
         <hr/>
+
+        <table border="1">
+            <tr>
+                <th>ORDER NUMBER</th>
+                <th>SALES DATE<th>
+                <th>SHIPPING COST</th>
+                <th>QUANTITY</th>
+            </tr>
+
+            <% for (PurchaseOrder order : PurchaseOrder.getOrderByCustomerID(id)) {%>
+            <tr>
+                <td><%=order.getId()%></td>
+                <td><%=order.getSalesDate()%></td>
+                <td><%=order.getShippingCost()%></td>
+                <td><%=order.getQuantity()%></td>
+            </tr>
+            <%} %>
+        </table>
+
         <% } else {%>
         <h3 style="color: red"> Customer (<%=id%>) not found</h3>
-
-        <% }        %>
+        <% } %>
 
         <%} catch (Exception e) {%>
         <h3 style="color: red"> <%=e.getMessage()%></h3>
+        <h3 style="color: red"> <%=e.toString()%></h3>
         <% }%>
-
-
-        <table>
-            <tr>
-                <th></th>
-            </tr>
-        </table>
     </body>
 </html>
