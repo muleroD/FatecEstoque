@@ -47,18 +47,14 @@ public class PurchaseOrder {
         preStmt.setInt(1, id);
         rs = preStmt.executeQuery();
 
-        if (rs.next() == false) {
-            System.out.println("ResultSet in empty in Java");
-        } else {
-            while (rs.next()) {
-                PurchaseOrder order = new PurchaseOrder(
-                        rs.getInt("ORDER_NUM"),
-                        rs.getDate("SALES_DATE"),
-                        rs.getDouble("SHIPPING_COST"),
-                        rs.getInt("QUANTITY")
-                );
-                orderList.add(order);
-            }
+        while (rs.next()) {
+            PurchaseOrder order = new PurchaseOrder(
+                    rs.getInt("ORDER_NUM"),
+                    rs.getDate("SALES_DATE"),
+                    rs.getDouble("SHIPPING_COST"),
+                    rs.getInt("QUANTITY")
+            );
+            orderList.add(order);
         }
 
         stopConnection();
