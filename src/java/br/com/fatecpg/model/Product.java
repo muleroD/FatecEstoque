@@ -5,10 +5,13 @@
  */
 package br.com.fatecpg.model;
 
+import static br.com.fatecpg.model.ConnectionManager.initConnection;
+import static br.com.fatecpg.model.ConnectionManager.stopConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,11 +25,11 @@ public class Product {
     private static ResultSet rs = null;
 
     private int id;
-    private String purchaseCost;
+    private double purchaseCost;
     private String description;
     private String available;
 
-    public Product(int id, String purchaseCost, String description, String available) {
+    public Product(int id, double purchaseCost, String description, String available) {
         this.id = id;
         this.purchaseCost = purchaseCost;
         this.description = description;
