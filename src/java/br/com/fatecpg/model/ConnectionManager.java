@@ -41,7 +41,7 @@ public class ConnectionManager {
         return con;
     }
 
-    public void closeConnection() {
+    public static void closeConnection() {
         try {
             ConnectionManager.con.close();
         } catch (SQLException e) {

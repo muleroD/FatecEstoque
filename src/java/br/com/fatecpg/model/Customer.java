@@ -51,10 +51,7 @@ public class Customer {
             );
         }
 
-        rs.close();
-        stmt.close();
-        con.close();
-
+        ConnectionManager.closeConnection();
         return customer;
     }
 

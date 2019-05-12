@@ -28,7 +28,7 @@
         <table border="1">
             <tr>
                 <th>ORDER NUMBER</th>
-                <th>SALES DATE<th>
+                <th>SALES DATE</th>
                 <th>SHIPPING COST</th>
                 <th>QUANTITY</th>
             </tr>
@@ -48,8 +48,8 @@
         <% } %>
 
         <%} catch (Exception e) {%>
-        <h3 style="color: red"> <%=e.getMessage()%></h3>
-        <h3 style="color: red"> <%=e.toString()%></h3>
+        <h3 style="color: red"><%=e.getMessage()%></h3>
+        <h3 style="color: red"><%=e.toString()%></h3>
         <% }%>
     </body>
 </html>

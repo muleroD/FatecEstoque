@@ -56,10 +56,7 @@ public class PurchaseOrder {
             orderList.add(order);
         }
 
-        rs.close();
-        stmt.close();
-        con.close();
-
+        ConnectionManager.closeConnection();
         return orderList;
     }
 
