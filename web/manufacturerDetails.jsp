@@ -12,9 +12,35 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JDBC - Customers Details</title>
+        <style>
+            h2 {
+                text-align: center;
+                font-family: sans-serif;
+                color:green;
+            }
+            table#customer{
+                border-collapse: collapse;
+                align-self: center;
+                margin-left: 20%;
+                alignment-adjust: auto;
+                width:50%;
+            }
+            h3{
+               text-align: center;
+               font-family: sans-serif;
+               
+            }
+            table#customer{
+                border-collapse: collapse;
+                align-self: center;
+                margin-left: 20%;
+                alignment-adjust: auto;
+                width:50%;
+            }
+        </style>
     </head>
     <body>
-        <h1><a href="home.jsp">Java DB</a></h1>
+        <%@include file="WEB-INF/header.jsp"%>
         <h2>Manufacturer Details</h2>
 
         <% try {
@@ -26,7 +52,7 @@
         <h3>Name: <%=m.getName()%></h3>
         <hr/>  <br>
 
-        <table border="1">
+        <table id="customer" border="1">
             <tr>
                 <th>id</th>
                 <th>preço</th>
