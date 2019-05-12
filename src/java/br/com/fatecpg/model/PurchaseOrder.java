@@ -40,22 +40,25 @@ public class PurchaseOrder {
     public static ArrayList<PurchaseOrder> getOrderByCustomerID(int id) throws Exception {
         initConnection();
         String sql = "SELECT * FROM PURCHASE_ORDER WHERE CUSTOMER_ID = ? ";
+        ArrayList<PurchaseOrder> orderList = new ArrayList<>();
 
         con = ConnectionManager.startConnection();
         preStmt = con.prepareStatement(sql);
         preStmt.setInt(1, id);
         rs = preStmt.executeQuery();
 
-        ArrayList<PurchaseOrder> orderList = new ArrayList<>();
-
-        while (rs.next()) {
-            PurchaseOrder order = new PurchaseOrder(
-                    rs.getInt("ORDER_NUM"),
-                    rs.getDate("SALES_DATE"),
-                    rs.getDouble("SHIPPING_COST"),
-                    rs.getInt("QUANTITY")
-            );
-            orderList.add(order);
+        if (rs.next() == false) {
+            System.out.println("ResultSet in empty in Java");
+        } else {
+            while (rs.next()) {
+                PurchaseOrder order = new PurchaseOrder(
+                        rs.getInt("ORDER_NUM"),
+                        rs.getDate("SALES_DATE"),
+                        rs.getDouble("SHIPPING_COST"),
+                        rs.getInt("QUANTITY")
+                );
+                orderList.add(order);
+            }
         }
 
         stopConnection();
