@@ -44,11 +44,11 @@ public class Product {
         this.id = id;
     }
 
-    public String getPurchaseCost() {
+    public Double getPurchaseCost() {
         return purchaseCost;
     }
 
-    public void setPurchaseCost(String purchaseCost) {
+    public void setPurchaseCost(Double purchaseCost) {
         this.purchaseCost = purchaseCost;
     }
 
