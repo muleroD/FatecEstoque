@@ -12,34 +12,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JDBC - Manufacturer</title>
-        <style>
-            h2 {
-                text-align: center;
-                font-family: sans-serif;
-                color:green;
-            }
-            table#customer{
-                border-collapse: collapse;
-                align-self: center;
-                margin-left: 20%;
-                alignment-adjust: auto;
-                width:50%;
-            }
-            td{
-              
-            }
-       </style>
-        
     </head>
     <body>
-        <%@include file="WEB-INF/header.jsp"%>
+        <h1><a href="home.jsp">Java DB</a></h1>
         <h2>Manufacturer</h2>
 
         <%
             try {
                 ArrayList<Manufacturer> list = Manufacturer.getManufacturers();
         %> 
-        <table id="customer" border="1">
+        <table border="1">
             <tr>
                 <th>id</th>
                 <th>nome</th>
