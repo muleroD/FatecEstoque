@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import static br.com.fatecpg.model.ConnectionManager.initConnection;
+import static br.com.fatecpg.model.ConnectionManager.stopConnection;
 
 /**
  *
@@ -52,12 +53,12 @@ public class Customer {
             );
         }
 
-        ConnectionManager.stopConnection();
+        stopConnection();
         return customer;
     }
 
     public static ArrayList<Customer> getCustomers() throws Exception {
-        Class.forName("org.apache.derby.jdbc.ClientDriver");
+        initConnection();
         String sql = "SELECT * FROM CUSTOMER ORDER BY CUSTOMER_ID";
 
         con = ConnectionManager.startConnection();
@@ -75,10 +76,7 @@ public class Customer {
             list.add(c);
         }
 
-        rs.close();
-        stmt.close();
-        con.close();
-
+        stopConnection();
         return list;
     }
 
