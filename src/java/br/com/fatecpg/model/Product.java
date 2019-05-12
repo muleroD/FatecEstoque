@@ -38,6 +38,25 @@ public class Product {
 
     public static ArrayList<Product> getProductByManufacturerID(int id) throws Exception {
         initConnection();
+        String sql = "SELECT * FROM PRODUCT WHERE MANUFACTURER_ID = ? ";
+
+        con = ConnectionManager.startConnection();
+        preStmt = con.prepareStatement(sql);
+        preStmt.setInt(1, id);
+        rs = preStmt.executeQuery();
+
+        ArrayList<Product> productList = new ArrayList<>();
+
+        while (rs.next()) {
+            Product product = new Product(
+                    rs.getInt("PRODUCT_ID"),
+                    rs.getDouble("PURCHASE_COST"),
+                    rs.getString("DESCRIPTION"),
+                    rs.getString("AVAILABLE")
+            );
+            productList.add(product);
+        }
+
         stopConnection();
         return productList;
     }
