@@ -5,13 +5,13 @@
  */
 package br.com.fatecpg.model;
 
-import static br.com.fatecpg.model.ConnectionManager.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import static br.com.fatecpg.model.ConnectionManager.initConnection;
 
 /**
  *
@@ -37,10 +37,10 @@ public class PurchaseOrder {
     }
 
     public static ArrayList<PurchaseOrder> getOrderByCustomerID(int id) throws Exception {
-        ConnectionManager();
+        initConnection();
         String sql = "SELECT * FROM PURCHASE_ORDER WHERE CUSTOMER_ID = ? ";
 
-        con = ConnectionManager.createConnection();
+        con = ConnectionManager.startConnection();
         preStmt = con.prepareStatement(sql);
         preStmt.setInt(1, id);
         rs = preStmt.executeQuery();
@@ -57,7 +57,7 @@ public class PurchaseOrder {
             orderList.add(order);
         }
 
-        ConnectionManager.closeConnection();
+        ConnectionManager.stopConnection();
         return orderList;
     }
 

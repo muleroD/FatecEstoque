@@ -5,12 +5,12 @@
  */
 package br.com.fatecpg.model;
 
-import static br.com.fatecpg.model.ConnectionManager.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import static br.com.fatecpg.model.ConnectionManager.initConnection;
 
 /**
  *
@@ -34,10 +34,10 @@ public class Customer {
     }
 
     public static Customer getCustomerById(int id) throws Exception {
-        ConnectionManager();
+        initConnection();
         String sql = "SELECT * FROM CUSTOMER WHERE CUSTOMER_ID = ? ";
 
-        con = ConnectionManager.createConnection();
+        con = ConnectionManager.startConnection();
         preStmt = con.prepareStatement(sql);
         preStmt.setInt(1, id);
         rs = preStmt.executeQuery();
@@ -52,7 +52,7 @@ public class Customer {
             );
         }
 
-        ConnectionManager.closeConnection();
+        ConnectionManager.stopConnection();
         return customer;
     }
 
@@ -60,7 +60,7 @@ public class Customer {
         Class.forName("org.apache.derby.jdbc.ClientDriver");
         String sql = "SELECT * FROM CUSTOMER ORDER BY CUSTOMER_ID";
 
-        con = ConnectionManager.createConnection();
+        con = ConnectionManager.startConnection();
         stmt = con.createStatement();
         rs = stmt.executeQuery(sql);
 

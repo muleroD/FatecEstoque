@@ -22,7 +22,7 @@ public class ConnectionManager {
 
     private static Connection con;
 
-    public static void ConnectionManager() {
+    public static void initConnection() {
         try {
             Class.forName(DRIVERNAME);
         } catch (ClassNotFoundException e) {
@@ -31,7 +31,7 @@ public class ConnectionManager {
         }
     }
 
-    public static Connection createConnection() {
+    public static Connection startConnection() {
         try {
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException e) {
@@ -41,7 +41,7 @@ public class ConnectionManager {
         return con;
     }
 
-    public static void closeConnection() {
+    public static void stopConnection() {
         try {
             ConnectionManager.con.close();
         } catch (SQLException e) {
