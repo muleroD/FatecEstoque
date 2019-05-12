@@ -36,6 +36,12 @@ public class Product {
         this.available = available;
     }
 
+    public static ArrayList<Product> getProductByManufacturerID(int id) throws Exception {
+        initConnection();
+        stopConnection();
+        return productList;
+    }
+
     public int getId() {
         return id;
     }
