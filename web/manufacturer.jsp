@@ -12,7 +12,7 @@
         <title>JDBC - Manufacturer</title>
     </head>
     <body>
-        <h1>Java DB</h1>
+        <h1><a href="home.jsp">Java DB</a></h1>
         <h2>Manufacturer</h2>
 
     </body>

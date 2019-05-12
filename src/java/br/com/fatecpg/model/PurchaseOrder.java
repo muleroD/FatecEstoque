@@ -5,6 +5,7 @@
  */
 package br.com.fatecpg.model;
 
+import static br.com.fatecpg.model.ConnectionManager.ConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,7 +37,7 @@ public class PurchaseOrder {
     }
 
     public static ArrayList<PurchaseOrder> getOrderByCustomerID(int id) throws Exception {
-        Class.forName("org.apache.derby.jdbc.ClientDriver");
+        ConnectionManager();
         String sql = "SELECT * FROM PURCHASE_ORDER WHERE CUSTOMER_ID = ? ";
 
         con = ConnectionManager.createConnection();

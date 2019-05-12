@@ -22,7 +22,7 @@ public class ConnectionManager {
 
     private static Connection con;
 
-    public ConnectionManager() {
+    public static void ConnectionManager() {
         try {
             Class.forName(DRIVERNAME);
         } catch (ClassNotFoundException e) {
