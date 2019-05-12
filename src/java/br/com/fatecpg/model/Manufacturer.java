@@ -5,10 +5,13 @@
  */
 package br.com.fatecpg.model;
 
+import static br.com.fatecpg.model.ConnectionManager.initConnection;
+import static br.com.fatecpg.model.ConnectionManager.stopConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -33,6 +36,56 @@ public class Manufacturer {
         this.city = city;
         this.state = state;
         this.email = email;
+    }
+
+    public static Manufacturer getManufacturerById(int id) throws Exception {
+        initConnection();
+        String sql = "SELECT * FROM MANUFACTURER WHERE MANUFACTURER_ID = ? ";
+
+        con = ConnectionManager.startConnection();
+        preStmt = con.prepareStatement(sql);
+        preStmt.setInt(1, id);
+        rs = preStmt.executeQuery();
+
+        Manufacturer manufacturer = null;
+
+        if (rs.next()) {
+            manufacturer = new Manufacturer(
+                    rs.getInt("MANUFACTURER_ID"),
+                    rs.getString("NAME"),
+                    rs.getString("CITY"),
+                    rs.getString("STATE"),
+                    rs.getString("EMAIL")
+            );
+        }
+
+        stopConnection();
+        return manufacturer;
+    }
+
+    public static ArrayList<Manufacturer> getManufacturers() throws Exception {
+        initConnection();
+        String sql = "SELECT * FROM MANUFACTURER  ORDER BY MANUFACTURER_ID";
+
+        con = ConnectionManager.startConnection();
+        stmt = con.createStatement();
+        rs = stmt.executeQuery(sql);
+
+        ArrayList<Manufacturer> list = new ArrayList<>();
+
+        while (rs.next()) {
+            Manufacturer m = new Manufacturer(
+                    rs.getInt("MANUFACTURER_ID"),
+                    rs.getString("NAME"),
+                    rs.getString("CITY"),
+                    rs.getString("STATE"),
+                    rs.getString("EMAIL")
+            );
+            list.add(m);
+        }
+
+        stopConnection();
+        return list;
     }
 
     public int getId() {
