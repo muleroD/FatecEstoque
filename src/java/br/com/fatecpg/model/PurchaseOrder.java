@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import static br.com.fatecpg.model.ConnectionManager.initConnection;
+import static br.com.fatecpg.model.ConnectionManager.stopConnection;
 
 /**
  *
@@ -57,7 +58,7 @@ public class PurchaseOrder {
             orderList.add(order);
         }
 
-        ConnectionManager.stopConnection();
+        stopConnection();
         return orderList;
     }
 
