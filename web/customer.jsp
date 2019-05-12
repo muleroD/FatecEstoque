@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JDBC - Index</title>
+        <title>JDBC - Customer</title>
     </head>
     <body>
         <h1>Java DB</h1>
@@ -33,7 +33,7 @@
                 <td><%=c.getId()%></td>
                 <td><%=c.getName()%></td>
                 <td><%=c.getEmail()%></td>
-                <td><a href="detailsCustomer.jsp?id=<%=c.getId()%>">View</a></td>
+                <td><a href="customerDetails.jsp?id=<%=c.getId()%>">View</a></td>
             </tr>
             <%}%>
         </table>

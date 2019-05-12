@@ -16,6 +16,7 @@
     <body>
         <h1>Java DB</h1>
         <h2>Customers Details</h2>
+
         <% try {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Customer c = Customer.getCustomerById(id);
@@ -23,7 +24,7 @@
 
         <h3>Id: <%=c.getId()%></h3>
         <h3>Name: <%=c.getName()%></h3>
-        <hr/>
+        <hr/>  <br>
 
         <table border="1">
             <tr>
